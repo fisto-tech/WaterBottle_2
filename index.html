@@ -108,13 +108,13 @@
                 <div class="water-drop water-drop-3"></div>
                 <div class="water-drop water-drop-4"></div>
                 <div class="water-drop water-drop-5"></div>
-                <div class="water-drop water-drop-6"></div>
-                <div class="water-drop water-drop-7"></div>
-                <div class="water-drop water-drop-8"></div>
-                <div class="water-drop water-drop-9"></div>
-                <div class="water-drop water-drop-10"></div>
-                <div class="water-drop water-drop-11"></div>
-                <div class="water-drop water-drop-12"></div>
+                <div class="water-drop water-drop-6 hidden md:block"></div>
+                <div class="water-drop water-drop-7 hidden md:block"></div>
+                <div class="water-drop water-drop-8 hidden md:block"></div>
+                <div class="water-drop water-drop-9 hidden md:block"></div>
+                <div class="water-drop water-drop-10 hidden md:block"></div>
+                <div class="water-drop water-drop-11 hidden md:block"></div>
+                <div class="water-drop water-drop-12 hidden md:block"></div>
 
                 <div
                     class="flex flex-col lg:flex-row w-full justify-between items-start gap-6 md:gap-12 lg:gap-8 max-w-[1400px] mx-auto mt-2 md:mt-4 lg:mt-8 relative z-10">
@@ -533,40 +533,40 @@
             </aside>
 
             <!-- Main Content Container for Section 6 -->
-            <div class="flex-1 flex w-full h-full pl-12 md:pl-[6.5rem] pr-0 md:pr-4 md:pr-[2%] xl:pr-[4%] relative z-10 items-center justify-end">
+            <div class="flex-1 flex flex-col md:flex-row w-full h-full pl-0 md:pl-[6.5rem] pr-0 md:pr-4 md:pr-[2%] xl:pr-[4%] relative z-10 items-end md:items-center justify-center md:justify-end pb-12 md:pb-0">
                 <!-- Right Content: Feature Cards -->
-                <div class="flex flex-col gap-5 md:gap-6 w-full max-w-md lg:max-w-lg mt-12 md:mt-0 ml-auto">
+                <div id="leaf-cards-container" class="flex flex-row md:flex-col gap-4 md:gap-6 w-full max-w-full md:max-w-md lg:max-w-lg mt-auto md:mt-0 ml-0 md:ml-auto overflow-x-auto md:overflow-visible snap-x snap-mandatory px-6 md:px-0 pb-4 md:pb-0 hide-scrollbar" style="scrollbar-width: none;">
                     
                     <!-- Card 1 -->
-                    <div class="feature-card bg-[#f0ebe0]/70 backdrop-blur-md rounded-[18px] p-5 flex items-center gap-5 shadow-lg border border-white/40">
-                        <div class="w-16 h-16 shrink-0 rounded-full bg-[#1b3419] shadow-[0_5px_15px_rgba(0,0,0,0.4)] flex justify-center items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-white"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+                    <div class="feature-card shrink-0 w-[85vw] md:w-auto bg-[#f0ebe0]/70 backdrop-blur-md rounded-[18px] p-5 flex flex-col sm:flex-row items-center sm:items-start md:items-center text-center sm:text-left gap-4 md:gap-5 shadow-lg border border-white/40 snap-center">
+                        <div class="w-14 h-14 md:w-16 md:h-16 shrink-0 rounded-full bg-[#1b3419] shadow-[0_5px_15px_rgba(0,0,0,0.4)] flex justify-center items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 md:w-8 md:h-8 text-white"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-[#1b3419] font-bold text-[17px] tracking-wide mb-1">NATURALLY PURE</h3>
-                            <p class="text-[#3b4d3b] text-[15px] leading-[1.4]">Carefully sourced and filtered to deliver a clean and refreshing taste in every sip.</p>
+                            <h3 class="text-[#1b3419] font-bold text-[16px] md:text-[17px] tracking-wide mb-1 md:mb-2">NATURALLY PURE</h3>
+                            <p class="text-[#3b4d3b] text-[14px] md:text-[15px] leading-[1.4]">Carefully sourced and filtered to deliver a clean and refreshing taste in every sip.</p>
                         </div>
                     </div>
 
                     <!-- Card 2 -->
-                    <div class="feature-card bg-[#f0ebe0]/70 backdrop-blur-md rounded-[18px] p-5 flex items-center gap-5 shadow-lg border border-white/40">
-                        <div class="w-16 h-16 shrink-0 rounded-full bg-[#1b3419] shadow-[0_5px_15px_rgba(0,0,0,0.4)] flex justify-center items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-white"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
+                    <div class="feature-card shrink-0 w-[85vw] md:w-auto bg-[#f0ebe0]/70 backdrop-blur-md rounded-[18px] p-5 flex flex-col sm:flex-row items-center sm:items-start md:items-center text-center sm:text-left gap-4 md:gap-5 shadow-lg border border-white/40 snap-center">
+                        <div class="w-14 h-14 md:w-16 md:h-16 shrink-0 rounded-full bg-[#1b3419] shadow-[0_5px_15px_rgba(0,0,0,0.4)] flex justify-center items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 md:w-8 md:h-8 text-white"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-[#1b3419] font-bold text-[17px] tracking-wide mb-1">EVERYDAY HYDRATION</h3>
-                            <p class="text-[#3b4d3b] text-[15px] leading-[1.4]">Perfect for work, travel, fitness, and outdoor adventures throughout the day.</p>
+                            <h3 class="text-[#1b3419] font-bold text-[16px] md:text-[17px] tracking-wide mb-1 md:mb-2">EVERYDAY HYDRATION</h3>
+                            <p class="text-[#3b4d3b] text-[14px] md:text-[15px] leading-[1.4]">Perfect for work, travel, fitness, and outdoor adventures throughout the day.</p>
                         </div>
                     </div>
 
                     <!-- Card 3 -->
-                    <div class="feature-card bg-[#f0ebe0]/70 backdrop-blur-md rounded-[18px] p-5 flex items-center gap-5 shadow-lg border border-white/40">
-                        <div class="w-16 h-16 shrink-0 rounded-full bg-[#1b3419] shadow-[0_5px_15px_rgba(0,0,0,0.4)] flex justify-center items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-white"><path d="M7 15.3 3 19l4 3.7"/><path d="m17 8.7 4-3.7-4-3.7"/><path d="M14.6 22H9c-3.3 0-6-2.7-6-6v-5.7"/><path d="M21 15.3V9.6c0-3.3-2.7-6-6-6h-5.6"/></svg>
+                    <div class="feature-card shrink-0 w-[85vw] md:w-auto bg-[#f0ebe0]/70 backdrop-blur-md rounded-[18px] p-5 flex flex-col sm:flex-row items-center sm:items-start md:items-center text-center sm:text-left gap-4 md:gap-5 shadow-lg border border-white/40 snap-center">
+                        <div class="w-14 h-14 md:w-16 md:h-16 shrink-0 rounded-full bg-[#1b3419] shadow-[0_5px_15px_rgba(0,0,0,0.4)] flex justify-center items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 md:w-8 md:h-8 text-white"><path d="M7 15.3 3 19l4 3.7"/><path d="m17 8.7 4-3.7-4-3.7"/><path d="M14.6 22H9c-3.3 0-6-2.7-6-6v-5.7"/><path d="M21 15.3V9.6c0-3.3-2.7-6-6-6h-5.6"/></svg>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-[#1b3419] font-bold text-[17px] tracking-wide mb-1">SUSTAINABLE CHOICE</h3>
-                            <p class="text-[#3b4d3b] text-[15px] leading-[1.4]">Lightweight design with eco-conscious materials that support a greener future.</p>
+                            <h3 class="text-[#1b3419] font-bold text-[16px] md:text-[17px] tracking-wide mb-1 md:mb-2">SUSTAINABLE CHOICE</h3>
+                            <p class="text-[#3b4d3b] text-[14px] md:text-[15px] leading-[1.4]">Lightweight design with eco-conscious materials that support a greener future.</p>
                         </div>
                     </div>
 
@@ -577,9 +577,9 @@
 
 
         <!-- Section 7: Image Section (section5bg) -->
-        <section class="w-full m-0 p-0 relative flex flex-col overflow-hidden shrink-0">
-            <!-- Background Image (defines section height) -->
-            <img src="./section5BG1.png" alt="Section 7 Background" class="w-full h-auto block -z-20 relative">
+        <section class="w-full min-h-[100svh] md:min-h-0 m-0 p-0 relative flex flex-col overflow-hidden shrink-0">
+            <!-- Background Image (defines section height on desktop) -->
+            <img src="./section5BG1.png" alt="Section 7 Background" class="absolute md:relative inset-0 w-full h-full md:h-auto object-cover md:object-fill block -z-20">
 
             <!-- Dark Overlay for contrast -->
             <div class="absolute inset-0 bg-black/60 -z-10 pointer-events-none"></div>
@@ -597,7 +597,7 @@
 
                 <!-- Top Text -->
                 <div
-                    class="absolute top-20 md:top-28 inset-x-0 z-40 text-center pl-12 md:pl-[6.5rem] pointer-events-none">
+                    class="absolute top-12 md:top-28 inset-x-0 z-40 text-center pl-12 md:pl-[6.5rem] pointer-events-none">
                     <span
                         class="text-[#d4c1a0] text-[18px] md:text-[24px] lg:text-[28px] tracking-[0.3em] uppercase font-bold drop-shadow-md">CRAFTED
                         FOR EVERY MOVEMENT</span>
@@ -643,10 +643,10 @@
 
                 <!-- Bottom Text -->
                 <div
-                    class="absolute bottom-48 md:bottom-56 lg:bottom-64 inset-x-0 z-40 text-center pl-12 md:pl-[6.5rem] pointer-events-none">
+                    class="absolute bottom-24 md:bottom-56 lg:bottom-64 inset-x-0 z-40 text-center pl-12 md:pl-[6.5rem] pointer-events-none">
                     <h2
                         class="text-white text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] font-heading leading-[0.95] tracking-wide uppercase drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)]">
-                        HYDRATION<br>ELEVATIED
+                        HYDRATION<br>ELEVATED
                     </h2>
                 </div>
 

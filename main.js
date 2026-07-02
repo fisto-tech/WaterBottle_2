@@ -79,69 +79,81 @@ document.addEventListener('DOMContentLoaded', () => {
         invalidateOnRefresh: true,
     });
 
-    let isDesktop = window.matchMedia("(min-width: 769px)").matches;
-    
-    // Helper to create smooth timeline chunks without overlap conflicts
-    // We are replacing individual scroll triggers with a single master timeline for flawless math.
-    
-    // Pin Section 3 (The Stone) to freeze scroll during customization
-    ScrollTrigger.create({
-        trigger: ".section-3",
-        start: "top top",
-        end: "+=150%", // Pin for 1.5x viewport height
-        pin: true,
-        pinSpacing: true,
-        refreshPriority: 1 // CRITICAL: Forces GSAP to calculate this pin's spacing BEFORE calculating the Master Pin's end point
-    });
+    let mm = gsap.matchMedia();
 
-    // ==========================================
-    // THE MASTER MOVEMENT TIMELINE
-    // ==========================================
-    // By using a single master timeline, we eliminate all 'handoff' jitter between sections.
-    // The bottle will move in one continuous, buttery-smooth flow.
-    // Total scroll distance is exactly 550vh (400vh sections + 150vh pin padding).
-    
-    const masterTl = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".hero",
+    mm.add("(min-width: 769px)", () => {
+        // Desktop code
+        ScrollTrigger.create({
+            trigger: ".section-3",
             start: "top top",
-            endTrigger: ".section-5",
-            end: "bottom bottom",
-            scrub: 1, // Reduced from 1.5 for a tighter, less "bouncy" feel
-            invalidateOnRefresh: true
-        }
+            end: "+=150%", // Pin for 1.5x viewport height
+            pin: true,
+            pinSpacing: true,
+            refreshPriority: 1 // CRITICAL: Forces GSAP to calculate this pin's spacing BEFORE calculating the Master Pin's end point
+        });
+
+        const masterTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",
+                endTrigger: ".section-5",
+                end: "bottom bottom",
+                scrub: 1, // Reduced from 1.5 for a tighter, less "bouncy" feel
+                invalidateOnRefresh: true
+            }
+        });
+
+        // 1. Hero to Intro (100vh)
+        masterTl.to(bottle, { y: "5vh", rotation: 0, duration: 100, ease: "power1.inOut" });
+        // 2. Intro to Stone (100vh)
+        masterTl.to(bottle, { y: "15vh", x: "5vw", duration: 100, ease: "power1.inOut" });
+        // 3. The Stone Hold (150vh) - Holds perfectly still during the pin
+        masterTl.to(bottle, { y: "15vh", x: "5vw", duration: 150, ease: "none" });
+        // 4. The River Glide (100vh)
+        masterTl.to(bottle, { y: "0vh", x: "0vw", duration: 100, ease: "power1.inOut" });
+        // 5. Landing on 02 Text (50vh)
+        masterTl.to(bottle, { y: "5vh", x: "0vw", duration: 50, ease: "power1.out" });
+        // 6. Final Hold until the end of Section 5 (50vh)
+        masterTl.to(bottle, { y: "5vh", x: "0vw", duration: 50, ease: "none" });
     });
 
-    // 1. Hero to Intro (100vh)
-    masterTl.to(bottle, { y: "5vh", rotation: 0, duration: 100, ease: "power1.inOut" });
+    mm.add("(max-width: 768px)", () => {
+        // Mobile code (no pin on section-3, no hold)
+        const masterTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",
+                endTrigger: ".section-5",
+                end: "bottom bottom",
+                scrub: 1,
+                invalidateOnRefresh: true
+            }
+        });
 
-    // 2. Intro to Stone (100vh)
-    masterTl.to(bottle, { y: "15vh", x: isDesktop ? "5vw" : "0vw", duration: 100, ease: "power1.inOut" });
-
-    // 3. The Stone Hold (150vh) - Holds perfectly still during the pin
-    masterTl.to(bottle, { y: "15vh", x: isDesktop ? "5vw" : "0vw", duration: 150, ease: "none" });
-
-    // 4. The River Glide (100vh)
-    masterTl.to(bottle, { y: "0vh", x: "0vw", duration: 100, ease: "power1.inOut" });
-
-    // 5. Landing on 02 Text (50vh)
-    masterTl.to(bottle, { y: "5vh", x: "0vw", duration: 50, ease: "power1.out" });
-
-    // 6. Final Hold until the end of Section 5 (50vh)
-    masterTl.to(bottle, { y: "5vh", x: "0vw", duration: 50, ease: "none" });
+        // 1. Hero to Intro
+        masterTl.to(bottle, { y: "5vh", rotation: 0, duration: 100, ease: "power1.inOut" });
+        // 2. Intro to Stone
+        masterTl.to(bottle, { y: "15vh", x: "0vw", duration: 100, ease: "power1.inOut" });
+        // 4. The River Glide (skip the 150vh hold completely)
+        masterTl.to(bottle, { y: "0vh", x: "0vw", duration: 100, ease: "power1.inOut" });
+        // 5. Landing on 02 Text (Push down on mobile)
+        masterTl.to(bottle, { y: "60vh", x: "0vw", duration: 50, ease: "power1.out" });
+        // 6. Final Hold
+        masterTl.to(bottle, { y: "60vh", x: "0vw", duration: 50, ease: "none" });
+    });
 
     // Arrow Animation Trigger for Section 3
     let arrowTimeout;
     ScrollTrigger.create({
         trigger: ".section-3",
-        start: "top top",
+        start: "top 50%",
         onEnter: () => {
             arrowTimeout = setTimeout(() => {
                 const wrapper = document.querySelector('.graph__wrapper');
                 if(wrapper) wrapper.classList.add('start-anim');
                 const anim = document.getElementById('arrow-anim');
                 if(anim) anim.beginElement();
-            }, 800);
+            }, 50);
         },
         onLeaveBack: () => {
             clearTimeout(arrowTimeout);
@@ -200,6 +212,55 @@ document.addEventListener('DOMContentLoaded', () => {
                 ease: "power2.out"
             });
         }
+    }
+
+    // Automatic Horizontal Scroll for Leaf Section Cards (Mobile)
+    const leafCardsContainer = document.getElementById('leaf-cards-container');
+    if (leafCardsContainer) {
+        let autoScrollInterval;
+        let isForward = true;
+        
+        const startAutoScroll = () => {
+            autoScrollInterval = setInterval(() => {
+                if (window.innerWidth <= 768) {
+                    const card = leafCardsContainer.querySelector('.feature-card');
+                    if (!card) return;
+                    
+                    const scrollWidth = leafCardsContainer.scrollWidth;
+                    const clientWidth = leafCardsContainer.clientWidth;
+                    const maxScroll = scrollWidth - clientWidth;
+                    
+                    if (maxScroll > 0) {
+                        const currentScroll = leafCardsContainer.scrollLeft;
+                        const cardWidth = card.offsetWidth + parseInt(window.getComputedStyle(leafCardsContainer).gap || 0);
+                        
+                        let nextScroll = currentScroll + (isForward ? cardWidth : -cardWidth);
+                        
+                        if (nextScroll >= maxScroll - 5) {
+                            nextScroll = maxScroll;
+                            isForward = false;
+                        } else if (nextScroll <= 5) {
+                            nextScroll = 0;
+                            isForward = true;
+                        }
+                        
+                        leafCardsContainer.scrollTo({
+                            left: nextScroll,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            }, 2500);
+        };
+        
+        startAutoScroll();
+        
+        // Pause on touch to allow manual swiping
+        leafCardsContainer.addEventListener('touchstart', () => clearInterval(autoScrollInterval));
+        leafCardsContainer.addEventListener('touchend', () => {
+            clearInterval(autoScrollInterval);
+            setTimeout(startAutoScroll, 2000);
+        });
     }
 });
 
