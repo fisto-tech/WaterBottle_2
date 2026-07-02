@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vernora - Pure by Nature</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Outfit:wght@300;400;500;600&family=Caveat:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-green': '#3a4b31',
+                        'brand-text': '#5a5a5a',
+                    },
+                    fontFamily: {
+                        'heading': ['Oswald', 'sans-serif'],
+                        'body': ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bubbles.css">
+</head>
+
+<body
+    class="font-body text-brand-text flex overflow-x-hidden min-h-screen w-full m-0 p-0 selection:bg-brand-green selection:text-white relative bg-[#fdfcf9]">
+
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-[9999] bg-[#fdfcf9] flex flex-col items-center justify-center transition-opacity duration-700">
+        <div class="relative w-40 h-40 md:w-56 md:h-56 flex items-center justify-center mb-6">
+            <!-- Outer spinning ring -->
+            <div class="absolute inset-[-10px] border-[3px] border-t-[#6d9438] border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin" style="animation-duration: 1.5s;"></div>
+            <!-- Inner bouncing image -->
+            <img src="preloader.jpg" alt="Loading Vernora..." class="w-full h-full object-cover rounded-full shadow-lg animate-pulse" style="animation-duration: 2s;">
+        </div>
+        <h2 class="font-heading text-xl md:text-2xl tracking-[0.3em] text-[#6d9438] uppercase animate-pulse">Loading</h2>
+    </div>
+
+    <div class="bg-glow"></div>
+
+    <!-- Main Content Wrapper -->
+    <main class="flex-1 flex flex-col w-full relative z-10 m-0 p-0">
+
+        <!-- Center Bottle Image (Moved to root for z-index fix) -->
+        <div
+            class="hero-bottle-wrapper absolute left-[50%] top-[50vh] -translate-x-1/2 -translate-y-[45%] z-[60] pointer-events-none w-[35vw] sm:w-[25vw] md:w-[250px] lg:w-[280px] xl:w-[320px] flex justify-center items-center mix-blend-normal">
+            <img src="./image.png" alt="Vernora Water Bottle"
+                class="hero-bottle w-full h-auto object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.35)] transform rotate-[25deg]">
+        </div>
+
+        <!-- Section 1: Hero (Fits in one viewport) -->
+        <div class="section-1 hero w-full h-screen flex flex-col relative overflow-visible pl-12 md:pl-[6.5rem]">
+
+            <!-- Sidebar / Number (Section 1) -->
+            <aside
+                class="absolute left-0 top-0 bottom-0 w-12 md:w-[6.5rem] border-r border-gray-400/30 flex flex-col pt-24 md:pt-[8.5rem] items-center flex-shrink-0 bg-transparent z-40 pointer-events-none">
+                <span
+                    class="text-4xl md:text-[3.5rem] font-heading text-brand-green leading-none pointer-events-auto">01</span>
+            </aside>
+
+            <!-- Header -->
+            <header class="w-full flex justify-between items-center px-6 md:px-12 lg:px-16 py-8 relative z-30 shrink-0">
+                <!-- Logo -->
+                <div class="flex flex-col items-center justify-center cursor-pointer">
+                    <iconify-icon icon="lsicon:leaf-filled" style="color: #3a4b31;" width="26" height="26"
+                        class="mb-1"></iconify-icon>
+                    <h1 class="text-2xl font-heading text-brand-green leading-none tracking-widest mt-1">VERNORA</h1>
+                    <span
+                        class="text-[0.45rem] tracking-[0.28em] text-brand-green uppercase font-semibold mt-1 pl-1">Pure
+                        by nature</span>
+                </div>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex gap-12 items-center text-[15px] font-medium text-gray-700">
+                    <a href="#" class="hover:text-brand-green transition-colors">Home</a>
+                    <a href="#" class="hover:text-brand-green transition-colors">Our Story</a>
+                    <a href="#" class="hover:text-brand-green transition-colors">Features</a>
+                    <a href="#" class="hover:text-brand-green transition-colors">Products</a>
+                    <a href="#" class="hover:text-brand-green transition-colors">Contact</a>
+                </nav>
+
+                <!-- Order Button -->
+                <button
+                    class="bg-[#3a4b31] text-white px-8 py-3 rounded-full text-[15px] font-medium shadow-[0_8px_20px_rgba(58,75,49,0.35)] hover:shadow-[0_12px_28px_rgba(58,75,49,0.45)] hover:-translate-y-0.5 transition-all duration-300">
+                    Order Now
+                </button>
+            </header>
+
+            <!-- Hero Section -->
+            <section class="flex-1 flex flex-col justify-center px-4 md:px-12 lg:px-20 pb-10 md:pb-20 w-full relative">
+
+                <!-- Water Drops -->
+                <div class="water-drop water-drop-1"></div>
+                <div class="water-drop water-drop-2"></div>
+                <div class="water-drop water-drop-3"></div>
+                <div class="water-drop water-drop-4"></div>
+                <div class="water-drop water-drop-5"></div>
+                <div class="water-drop water-drop-6"></div>
+                <div class="water-drop water-drop-7"></div>
+                <div class="water-drop water-drop-8"></div>
+                <div class="water-drop water-drop-9"></div>
+                <div class="water-drop water-drop-10"></div>
+                <div class="water-drop water-drop-11"></div>
+                <div class="water-drop water-drop-12"></div>
+
+                <div
+                    class="flex flex-col lg:flex-row w-full justify-between items-start gap-6 md:gap-12 lg:gap-8 max-w-[1400px] mx-auto mt-2 md:mt-4 lg:mt-8 relative z-10">
+
+                    <!-- Left Side Content -->
+                    <div class="w-full lg:w-[55%] flex flex-col">
+                        <h2
+                            class="text-[3.5rem] sm:text-[4.5rem] md:text-[7rem] lg:text-[7.5rem] xl:text-[8.5rem] font-heading text-brand-green leading-[1.05] uppercase break-words w-full">
+                            VERNORA'S<br>CRAFTED
+                        </h2>
+
+                        <div class="mt-8 md:mt-12 xl:mt-16">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="h-[1.5px] bg-[#3a4b31]/40 w-32"></div>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3a4b31"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                    class="opacity-80 rotate-45">
+                                    <path d="M5 21c.5 -4.5 2.5 -8 7 -10" />
+                                    <path
+                                        d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3z" />
+                                </svg>
+                            </div>
+
+                            <p class="text-gray-600 max-w-[400px] text-[15px] sm:text-base leading-[1.8] font-light">
+                                Designed for modern lifestyles, Vernora Water Bottles combine durability, elegance, and
+                                everyday convenience. Stay hydrated whether you're at work, traveling, or exploring
+                                outdoors.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right Side Content -->
+                    <div class="w-full lg:w-[45%] flex flex-col lg:items-end mt-4 md:mt-0 relative z-10">
+                        <div class="max-w-fit">
+                            <h2
+                                class="text-[3.5rem] sm:text-[4.5rem] md:text-[7rem] lg:text-[7.5rem] xl:text-[8.5rem] font-heading text-brand-green leading-[1.05] uppercase text-left">
+                                <span
+                                    class="inline-block -translate-x-4 md:-translate-x-8 lg:-translate-x-16">PUREST.</span><br><span
+                                    class="inline-block -translate-x-8 md:-translate-x-12 lg:-translate-x-20">FOR
+                                    YOU</span>
+                            </h2>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Right Leaf -->
+                    <img src="./smallleafimage.webp" alt="Leaf Decoration"
+                        class="absolute -bottom-[10rem] md:-bottom-[15rem] lg:-bottom-[20rem] -right-16 md:-right-24 lg:-right-32 w-[200px] md:w-[320px] lg:w-[450px] z-[80] pointer-events-none drop-shadow-2xl animate-leaf">
+
+                </div>
+            </section>
+        </div>
+
+        <!-- Section 2: Video Section -->
+        <section class="section-2 section-intro w-full h-screen m-0 p-0 relative flex overflow-hidden">
+            <!-- Background Video -->
+            <video src="./rain.webm" autoplay loop muted playsinline
+                class="absolute inset-0 w-full h-full object-cover -z-20"></video>
+
+            <!-- Dark Overlay -->
+            <div class="absolute inset-0 bg-black/50 -z-10 pointer-events-none"></div>
+
+            <!-- Sidebar / Number (Section 2) -->
+            <aside
+                class="absolute left-0 top-0 bottom-0 w-12 md:w-[6.5rem] border-r border-white/20 flex flex-col pt-24 md:pt-[8.5rem] items-center flex-shrink-0 bg-transparent z-40 pointer-events-none">
+                <span
+                    class="text-4xl md:text-[3.5rem] font-heading text-gray-400 leading-none pointer-events-auto">02</span>
+            </aside>
+
+            <!-- Main Content Container for Section 2 -->
+            <div class="flex-1 flex flex-col md:flex-row w-full h-full pl-12 md:pl-[6.5rem] relative z-10">
+
+                <div
+                    class="w-full max-w-[1400px] mx-auto h-full flex flex-col md:flex-row px-4 sm:px-8 lg:px-20 py-12 md:py-24 relative overflow-y-auto md:overflow-visible">
+                    <!-- Left Side Content -->
+                    <div
+                        class="w-full md:w-1/2 flex flex-col justify-center h-auto md:h-full pl-0 md:-ml-2 lg:-ml-12 mt-8 md:-mt-12 lg:-mt-24 mb-12 md:mb-0">
+                        <span
+                            class="text-[11px] tracking-[0.25em] uppercase font-bold text-gray-100 mb-3 drop-shadow-md">WHY
+                            VERNORA</span>
+                        <h2
+                            class="text-[3rem] md:text-[3.8rem] lg:text-[4.2rem] font-heading text-white leading-[0.95] tracking-normal uppercase mb-5 drop-shadow-lg">
+                            BUILT FOR<br>EVERY<br>ADVENTURE
+                        </h2>
+                        <p
+                            class="text-gray-200 text-[13px] md:text-[14px] leading-[1.7] font-light max-w-[300px] drop-shadow-md">
+                            Engineered with premium materials and a sleek modern design, Vernora bottles are crafted to
+                            keep up with your active lifestyle.
+                        </p>
+
+                        <!-- Bottom line with leaf -->
+                        <div
+                            class="flex items-center gap-4 relative md:absolute mt-8 md:mt-0 bottom-auto md:bottom-12 lg:bottom-24">
+                            <div class="h-[1.5px] bg-white/40 w-24 md:w-32"></div>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                class="opacity-80 rotate-45">
+                                <path d="M5 21c.5 -4.5 2.5 -8 7 -10" />
+                                <path
+                                    d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3z" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Right Side Content (Features) -->
+                    <div
+                        class="w-full md:w-1/2 flex flex-col justify-center h-auto md:h-full gap-6 md:gap-8 lg:gap-10 pl-0 md:pl-24 lg:pl-56 xl:pl-80 pt-4 md:pt-12 lg:pt-32 pb-12 md:pb-0">
+
+                        <div>
+                            <h3
+                                class="text-lg md:text-xl lg:text-[22px] font-bold text-white mb-1 md:mb-2 drop-shadow-md">
+                                Leak-Proof Design</h3>
+                            <p class="text-gray-300 text-sm md:text-[15px] font-light drop-shadow-sm">No spills. No
+                                mess. Carry confidently wherever you go.</p>
+                        </div>
+
+                        <div>
+                            <h3
+                                class="text-lg md:text-xl lg:text-[22px] font-bold text-white mb-1 md:mb-2 drop-shadow-md">
+                                Premium Build</h3>
+                            <p class="text-gray-300 text-sm md:text-[15px] font-light drop-shadow-sm">Made from
+                                high-quality BPA-free materials</p>
+                        </div>
+
+                        <div>
+                            <h3
+                                class="text-lg md:text-xl lg:text-[22px] font-bold text-white mb-1 md:mb-2 drop-shadow-md">
+                                Lightweight Body</h3>
+                            <p class="text-gray-300 text-sm md:text-[15px] font-light drop-shadow-sm">Comfortable to
+                                carry throughout the day.</p>
+                        </div>
+
+                        <div>
+                            <h3
+                                class="text-lg md:text-xl lg:text-[22px] font-bold text-white mb-1 md:mb-2 drop-shadow-md">
+                                Temperature Retention</h3>
+                            <p class="text-gray-300 text-sm md:text-[15px] font-light drop-shadow-sm">Keeps beverages
+                                fresh for longer periods.</p>
+                        </div>
+
+                        <div>
+                            <h3
+                                class="text-lg md:text-xl lg:text-[22px] font-bold text-white mb-1 md:mb-2 drop-shadow-md">
+                                Eco Friendly</h3>
+                            <p
+                                class="text-gray-300 text-sm md:text-[15px] font-light drop-shadow-sm whitespace-nowrap overflow-hidden text-ellipsis max-w-full">
+                                Reduce single-use plastic and choose sustainability.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 3: Customize -->
+        <section
+            class="section-3 timeline-section w-full h-screen m-0 p-0 relative flex overflow-visible shrink-0 bg-[#050505]">
+
+            <!-- Stone Image -->
+            <img src="./stone.svg" alt="Stone Base"
+                class="hidden md:block absolute left-12 md:left-[6.5rem] -bottom-10 md:-bottom-[150px] w-[80%] md:w-[55%] lg:w-[45%] h-auto object-contain object-left-bottom transform origin-left scale-x-[1.15] md:scale-x-[1.25] pointer-events-none z-40">
+
+            <!-- Sidebar / Number -->
+            <aside
+                class="absolute left-0 top-0 bottom-0 w-12 md:w-[6.5rem] border-r border-white/20 flex flex-col pt-24 md:pt-[8.5rem] items-center flex-shrink-0 bg-transparent z-40 pointer-events-none">
+                <span
+                    class="text-4xl md:text-[3.5rem] font-heading text-gray-400 leading-none pointer-events-auto">03</span>
+            </aside>
+
+            <!-- Main Content Container -->
+            <div
+                class="flex-1 w-full h-full pl-12 md:pl-[6.5rem] relative z-30 flex flex-col justify-center pointer-events-none">
+                <div
+                    class="w-full max-w-[1400px] mx-auto px-6 md:px-16 flex flex-col md:flex-row justify-between items-center h-full relative pointer-events-auto">
+
+                    <!-- Bottom Left Hand-Drawn Arrow and Text -->
+                    <div
+                        class="graph__wrapper absolute left-[5%] lg:left-[16%] xl:left-[22%] top-[65%] lg:top-[70%] flex items-center gap-2 z-[90] pointer-events-none hidden md:flex">
+                        <!-- Text to the left of the arrow -->
+                        <div id="arrow-text" class="text-white text-3xl lg:text-[2.5rem] leading-tight transform -rotate-12 drop-shadow-md" style="font-family: 'Caveat', cursive;">
+                            Click to<br>Change Label
+                        </div>
+                        <!-- Solid Hand-Drawn Arrow and Cursor -->
+                        <div id="arrow-head" class="flex items-start transform mt-6 ml-2 relative">
+                            <div class="w-[60px] lg:w-[90px]">
+                                <svg width="100%" viewBox="0 0 100 50" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.4));">
+                                    <path d="M10,40 Q40,15 90,25" />
+                                    <path d="M75,15 L90,25 L75,35" />
+                                </svg>
+                            </div>
+                            <div class="w-[28px] lg:w-[35px] absolute right-[-20px] top-[0px] animate-pulse">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5));">
+                                    <path d="M10,10 l4.5,10 l2,-6 l6,-2 z" fill="white" stroke="white"/>
+                                    <path d="M9,4 v-2" />
+                                    <path d="M4,9 h-2" />
+                                    <path d="M6,6 l-2,-2" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Top Right Dashed Arrow -->
+                    <div class="absolute left-[52%] lg:left-[55%] top-[25%] lg:top-[28%] w-[120px] lg:w-[160px] z-[70] pointer-events-none hidden md:block opacity-60">
+                        <svg width="100%" viewBox="0 0 150 100" fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round">
+                            <path class="arrow-dashed" stroke-width="2" stroke-dasharray="6,8" d="M10,10 Q80,20 140,80" />
+                            <polyline points="125,75 140,80 135,65" stroke-width="2" />
+                        </svg>
+                    </div>
+
+                    <!-- Left Side Text -->
+                    <div class="w-full md:w-[45%] flex flex-col justify-center mt-20 md:-mt-40">
+                        <span
+                            class="text-[11px] tracking-[0.25em] uppercase font-bold text-gray-300 mb-4 drop-shadow-md">CUSTOMIZE
+                            YOUR BOTTLE</span>
+                        <h2
+                            class="text-4xl md:text-5xl lg:text-6xl font-heading text-white leading-[1.1] tracking-wide uppercase mb-6 drop-shadow-lg">
+                            DESIGN THAT<br>REFLECTS YOU
+                        </h2>
+                        <p class="text-gray-400 text-sm md:text-[15px] leading-[1.7] font-light max-w-[400px]">
+                            Personalize your <strong class="font-semibold text-white">VERNORA</strong> bottle with
+                            premium label designs and cap colors that match your style. Create a bottle that is uniquely
+                            yours in just a few clicks.
+                        </p>
+                    </div>
+
+                    <!-- Right Side Cards & Title -->
+                    <div
+                        class="w-full md:w-[50%] flex flex-col justify-end items-start md:items-end h-full pb-24 md:pb-40 mt-12 md:mt-0">
+
+                        <!-- Forest Edition Text -->
+                        <h2
+                            class="text-5xl md:text-6xl lg:text-7xl font-heading text-[#6d9438] leading-[1] tracking-wide mb-8 md:mb-12 text-left md:text-right drop-shadow-md">
+                            Forest<br>Edition
+                        </h2>
+
+                        <div class="flex space-x-4 md:space-x-6">
+
+                            <!-- Card 1 (Active) -->
+                            <div class="flex flex-col items-center">
+                                <div id="card-default"
+                                    class="w-[70px] h-[110px] md:w-[90px] md:h-[140px] border-2 border-white shadow-[0_0_15px_rgba(255,255,255,0.6)] scale-105 rounded-[4px] p-1 cursor-pointer relative bg-black flex items-center justify-center transition-all duration-300">
+                                    <img src="./whitegreen.webp" class="w-full h-full object-contain" alt="Green Label">
+                                    <div
+                                        class="active-indicator absolute -bottom-[2px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-b-[6px] border-b-white">
+                                    </div>
+                                </div>
+                                <div class="active-line w-8 h-[2px] bg-white mt-4 transition-opacity"></div>
+                            </div>
+
+                            <!-- Card 2 -->
+                            <div class="flex flex-col items-center pt-2">
+                                <div id="card-black"
+                                    class="w-[70px] h-[110px] md:w-[90px] md:h-[140px] border border-gray-600 rounded-[4px] p-1 cursor-pointer hover:border-gray-400 transition-colors bg-black flex items-center justify-center relative">
+                                    <img src="./blackcard.webp" class="w-full h-full object-contain" alt="Black Label">
+                                    <div
+                                        class="active-indicator hidden absolute -bottom-[2px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-b-[6px] border-b-white">
+                                    </div>
+                                </div>
+                                <div class="active-line hidden w-8 h-[2px] bg-white mt-4 transition-opacity"></div>
+                            </div>
+
+                            <!-- Card 3 -->
+                            <div class="flex flex-col items-center pt-2">
+                                <div id="card-blue"
+                                    class="w-[70px] h-[110px] md:w-[90px] md:h-[140px] border border-gray-600 rounded-[4px] p-1 cursor-pointer hover:border-gray-400 transition-colors bg-black flex items-center justify-center relative">
+                                    <img src="./bluecard.webp" class="w-full h-full object-contain" alt="Blue Label">
+                                    <div
+                                        class="active-indicator hidden absolute -bottom-[2px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-b-[6px] border-b-white">
+                                    </div>
+                                </div>
+                                <div class="active-line hidden w-8 h-[2px] bg-white mt-4 transition-opacity"></div>
+                            </div>
+
+                            <!-- Card 4 -->
+                            <div class="flex flex-col items-center pt-2">
+                                <div id="card-yellow"
+                                    class="w-[70px] h-[110px] md:w-[90px] md:h-[140px] border border-gray-600 rounded-[4px] p-1 cursor-pointer hover:border-gray-400 transition-colors bg-black flex items-center justify-center relative">
+                                    <img src="./yellowcard.webp" class="w-full h-full object-contain"
+                                        alt="Yellow Label">
+                                    <div
+                                        class="active-indicator hidden absolute -bottom-[2px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-b-[6px] border-b-white">
+                                    </div>
+                                </div>
+                                <div class="active-line hidden w-8 h-[2px] bg-white mt-4 transition-opacity"></div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Image Section -->
+        <section class="section-4 timeline-section-2 w-full h-screen m-0 p-0 relative flex overflow-hidden">
+            <!-- Background Image -->
+            <img src="./section3BG1.webp" alt="Nature Background"
+                class="absolute inset-0 w-full h-full object-cover -z-20">
+
+            <!-- Dark Overlay (optional, for consistency and text readability later) -->
+            <div class="absolute inset-0 bg-black/30 -z-10 pointer-events-none"></div>
+
+            <!-- Sidebar / Number (Section 4) -->
+            <aside
+                class="absolute left-0 top-0 bottom-0 w-12 md:w-[6.5rem] border-r border-white/20 flex flex-col pt-24 md:pt-[8.5rem] items-center flex-shrink-0 bg-transparent z-40 pointer-events-none">
+                <span
+                    class="text-4xl md:text-[3.5rem] font-heading text-gray-400 leading-none pointer-events-auto">04</span>
+            </aside>
+
+            <!-- Main Content Container for Section 3 -->
+            <div class="flex-1 flex flex-col md:flex-row w-full h-full pl-12 md:pl-[6.5rem] relative z-10">
+                <div
+                    class="w-full max-w-[1400px] mx-auto h-full flex flex-col px-4 sm:px-8 lg:px-20 py-12 md:py-24 relative overflow-y-auto md:overflow-visible">
+
+                    <!-- Left Side Content -->
+                    <div
+                        class="w-full md:w-[60%] lg:w-[50%] flex flex-col justify-center h-auto md:h-full pl-0 md:-ml-2 lg:-ml-12 mt-20 md:mt-32 lg:mt-40">
+                        <span
+                            class="text-[11px] tracking-[0.25em] uppercase font-bold text-gray-100 mb-3 drop-shadow-md">SMART
+                            FEATURES</span>
+                        <h2
+                            class="text-[2.8rem] md:text-[3.8rem] lg:text-[4.2rem] font-heading text-white leading-[1] tracking-normal uppercase mb-5 drop-shadow-lg">
+                            DETAILS THAT<br>MAKE A DIFFERENCE
+                        </h2>
+                        <p
+                            class="text-gray-200 text-[13px] md:text-[14px] leading-[1.7] font-light max-w-[300px] drop-shadow-md mb-12 md:mb-16 lg:mb-20">
+                            Thoughtfully designed with features that ensure safety, convenience, and long-lasting
+                            performance.
+                        </p>
+
+                        <!-- Bottom Feature Block -->
+                        <div
+                            class="flex items-center gap-6 lg:gap-10 bg-gradient-to-r from-black/70 via-black/40 to-transparent p-6 lg:p-10 -ml-6 lg:-ml-10 relative">
+                            <!-- Large Serif Number -->
+                            <span
+                                class="text-[4.5rem] lg:text-[6.5rem] text-white leading-none font-serif font-normal drop-shadow-xl tracking-tighter"
+                                style="font-family: 'Playfair Display', 'Times New Roman', serif;">01</span>
+
+                            <!-- Text Details -->
+                            <div class="flex flex-col pt-1 lg:pt-3">
+                                <h3
+                                    class="text-lg lg:text-[22px] font-heading tracking-widest uppercase font-bold text-white mb-2 drop-shadow-md">
+                                    LEAK-PROOF CAP</h3>
+                                <p
+                                    class="text-gray-200 text-[13px] lg:text-[14px] leading-[1.6] font-light drop-shadow-md max-w-[300px]">
+                                    Engineered with a secure locking mechanism that prevents unwanted spills during
+                                    travel, work, or outdoor activities.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Image Section 2 -->
+        <section class="section-5 w-full h-screen m-0 p-0 relative flex overflow-hidden shrink-0">
+            <!-- Background Image -->
+            <img src="./section3BG2.webp" alt="Nature Background 2"
+                class="absolute inset-0 w-full h-full object-cover -z-20">
+
+            <!-- Dark Overlay -->
+            <div class="absolute inset-0 bg-black/30 -z-10 pointer-events-none"></div>
+
+            <!-- Sidebar / Number (Section 5) -->
+            <aside
+                class="absolute left-0 top-0 bottom-0 w-12 md:w-[6.5rem] border-r border-white/20 flex flex-col pt-24 md:pt-[8.5rem] items-center flex-shrink-0 bg-transparent z-40 pointer-events-none">
+                <span
+                    class="text-4xl md:text-[3.5rem] font-heading text-gray-400 leading-none pointer-events-auto">05</span>
+            </aside>
+
+            <!-- Main Content Container for Section 4 -->
+            <div class="flex-1 flex flex-col md:flex-row w-full h-full pl-12 md:pl-[6.5rem] relative z-10">
+                <div
+                    class="w-full max-w-[1400px] mx-auto h-full flex flex-col px-4 sm:px-8 lg:px-20 py-12 md:py-24 relative justify-center items-end">
+
+                    <!-- Right Side Feature Block -->
+                    <div
+                        class="flex items-center justify-end gap-6 lg:gap-10 bg-gradient-to-l from-black/70 via-black/40 to-transparent p-6 lg:p-10 -mr-4 sm:-mr-8 lg:-mr-20 relative w-full md:w-auto">
+
+                        <!-- Text Details -->
+                        <div class="flex flex-col pt-1 lg:pt-3 text-right items-end">
+                            <h3
+                                class="text-lg lg:text-[22px] font-heading tracking-widest uppercase font-bold text-white mb-2 drop-shadow-md">
+                                EASY REFILL & CLEAN</h3>
+                            <p
+                                class="text-gray-200 text-[13px] lg:text-[14px] leading-[1.6] font-light drop-shadow-md max-w-[340px]">
+                                The wide-mouth design makes cleaning simple and allows quick refills with water, ice
+                                cubes, or your favorite beverages.
+                            </p>
+                        </div>
+
+                        <!-- Large Serif Number -->
+                        <span
+                            class="text-[4.5rem] lg:text-[6.5rem] text-white leading-none font-serif font-normal drop-shadow-xl tracking-tighter"
+                            style="font-family: 'Playfair Display', 'Times New Roman', serif;">02</span>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Leaf Video Section -->
+        <section id="leaf-section" class="w-full h-screen m-0 p-0 relative flex overflow-hidden shrink-0">
+            <!-- Background Video -->
+            <video src="./leaf.mp4" autoplay loop muted playsinline
+                class="absolute inset-0 w-full h-full object-cover -z-20"></video>
+
+            <!-- Sidebar / Number (Section 6) -->
+            <aside
+                class="absolute left-0 top-0 bottom-0 w-12 md:w-[6.5rem] border-r border-white/20 flex flex-col pt-24 md:pt-[8.5rem] items-center flex-shrink-0 bg-transparent z-40 pointer-events-none">
+                <span
+                    class="text-4xl md:text-[3.5rem] font-heading text-gray-400 leading-none pointer-events-auto">06</span>
+            </aside>
+
+            <!-- Main Content Container for Section 6 -->
+            <div class="flex-1 flex w-full h-full pl-12 md:pl-[6.5rem] pr-0 md:pr-4 md:pr-[2%] xl:pr-[4%] relative z-10 items-center justify-end">
+                <!-- Right Content: Feature Cards -->
+                <div class="flex flex-col gap-5 md:gap-6 w-full max-w-md lg:max-w-lg mt-12 md:mt-0 ml-auto">
+                    
+                    <!-- Card 1 -->
+                    <div class="feature-card bg-[#f0ebe0]/70 backdrop-blur-md rounded-[18px] p-5 flex items-center gap-5 shadow-lg border border-white/40">
+                        <div class="w-16 h-16 shrink-0 rounded-full bg-[#1b3419] shadow-[0_5px_15px_rgba(0,0,0,0.4)] flex justify-center items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-white"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-[#1b3419] font-bold text-[17px] tracking-wide mb-1">NATURALLY PURE</h3>
+                            <p class="text-[#3b4d3b] text-[15px] leading-[1.4]">Carefully sourced and filtered to deliver a clean and refreshing taste in every sip.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="feature-card bg-[#f0ebe0]/70 backdrop-blur-md rounded-[18px] p-5 flex items-center gap-5 shadow-lg border border-white/40">
+                        <div class="w-16 h-16 shrink-0 rounded-full bg-[#1b3419] shadow-[0_5px_15px_rgba(0,0,0,0.4)] flex justify-center items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-white"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-[#1b3419] font-bold text-[17px] tracking-wide mb-1">EVERYDAY HYDRATION</h3>
+                            <p class="text-[#3b4d3b] text-[15px] leading-[1.4]">Perfect for work, travel, fitness, and outdoor adventures throughout the day.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="feature-card bg-[#f0ebe0]/70 backdrop-blur-md rounded-[18px] p-5 flex items-center gap-5 shadow-lg border border-white/40">
+                        <div class="w-16 h-16 shrink-0 rounded-full bg-[#1b3419] shadow-[0_5px_15px_rgba(0,0,0,0.4)] flex justify-center items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-white"><path d="M7 15.3 3 19l4 3.7"/><path d="m17 8.7 4-3.7-4-3.7"/><path d="M14.6 22H9c-3.3 0-6-2.7-6-6v-5.7"/><path d="M21 15.3V9.6c0-3.3-2.7-6-6-6h-5.6"/></svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-[#1b3419] font-bold text-[17px] tracking-wide mb-1">SUSTAINABLE CHOICE</h3>
+                            <p class="text-[#3b4d3b] text-[15px] leading-[1.4]">Lightweight design with eco-conscious materials that support a greener future.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Section 7: Image Section (section5bg) -->
+        <section class="w-full m-0 p-0 relative flex flex-col overflow-hidden shrink-0">
+            <!-- Background Image (defines section height) -->
+            <img src="./section5BG1.png" alt="Section 7 Background" class="w-full h-auto block -z-20 relative">
+
+            <!-- Dark Overlay for contrast -->
+            <div class="absolute inset-0 bg-black/60 -z-10 pointer-events-none"></div>
+
+            <!-- Sidebar / Number (Section 7) -->
+            <aside
+                class="absolute left-0 top-0 bottom-0 w-12 md:w-[6.5rem] border-r border-white/20 flex flex-col pt-24 md:pt-[8.5rem] items-center flex-shrink-0 bg-transparent z-40 pointer-events-none">
+                <span
+                    class="text-4xl md:text-[3.5rem] font-heading text-gray-400 leading-none pointer-events-auto">07</span>
+            </aside>
+
+            <!-- Main Content Container for Section 6 -->
+            <div
+                class="absolute inset-0 flex flex-col items-center justify-center w-full h-full pl-12 md:pl-[6.5rem] z-10 overflow-hidden">
+
+                <!-- Top Text -->
+                <div
+                    class="absolute top-20 md:top-28 inset-x-0 z-40 text-center pl-12 md:pl-[6.5rem] pointer-events-none">
+                    <span
+                        class="text-[#d4c1a0] text-[18px] md:text-[24px] lg:text-[28px] tracking-[0.3em] uppercase font-bold drop-shadow-md">CRAFTED
+                        FOR EVERY MOVEMENT</span>
+                </div>
+
+                <!-- Background Glow behind the gallery -->
+                <div
+                    class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[80%] bg-[#d4c1a0] opacity-30 blur-[120px] rounded-full pointer-events-none -z-10">
+                </div>
+
+                <!-- Gallery Container -->
+                <div class="relative w-full max-w-[1200px] h-[600px] flex justify-center items-center -mt-12 md:-mt-20 lg:-mt-28"
+                    style="perspective: 1500px;">
+                    <!-- Image 1 -->
+                    <div class="gallery-card absolute w-[140px] h-[260px] md:w-[180px] md:h-[340px] lg:w-[200px] lg:h-[380px] rounded-xl overflow-hidden shadow-2xl z-10 transition-all duration-700 ease-in-out"
+                        style="transform: translateX(-340%) translateZ(-350px) rotateY(35deg);">
+                        <img src="./Mask group1.webp" class="w-full h-full object-cover" alt="Gallery 1">
+                    </div>
+                    <!-- Image 2 -->
+                    <div class="gallery-card absolute w-[160px] h-[300px] md:w-[220px] md:h-[400px] lg:w-[240px] lg:h-[460px] rounded-xl overflow-hidden shadow-2xl z-20 transition-all duration-700 ease-in-out"
+                        style="transform: translateX(-140%) translateZ(-150px) rotateY(20deg);">
+                        <img src="./Mask group2.webp" class="w-full h-full object-cover" alt="Gallery 2">
+                    </div>
+                    <!-- Image 3 (Center) -->
+                    <div class="gallery-card absolute w-[200px] h-[400px] md:w-[280px] md:h-[500px] lg:w-[320px] lg:h-[580px] rounded-xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.8)] z-30 transition-all duration-700 ease-in-out"
+                        style="transform: translateX(0) translateZ(50px) rotateY(0deg);">
+                        <img src="./Mask group3.webp" class="w-full h-full object-cover" alt="Gallery 3">
+                        <div
+                            class="absolute inset-0 shadow-[inset_0_0_20px_rgba(255,255,255,0.1)] pointer-events-none rounded-xl">
+                        </div>
+                    </div>
+                    <!-- Image 4 -->
+                    <div class="gallery-card absolute w-[160px] h-[300px] md:w-[220px] md:h-[400px] lg:w-[240px] lg:h-[460px] rounded-xl overflow-hidden shadow-2xl z-20 transition-all duration-700 ease-in-out"
+                        style="transform: translateX(140%) translateZ(-150px) rotateY(-20deg);">
+                        <img src="./Mask group 4.webp" class="w-full h-full object-cover" alt="Gallery 4">
+                    </div>
+                    <!-- Image 5 -->
+                    <div class="gallery-card absolute w-[140px] h-[260px] md:w-[180px] md:h-[340px] lg:w-[200px] lg:h-[380px] rounded-xl overflow-hidden shadow-2xl z-10 transition-all duration-700 ease-in-out"
+                        style="transform: translateX(340%) translateZ(-350px) rotateY(-35deg);">
+                        <img src="./Mask group 5.webp" class="w-full h-full object-cover" alt="Gallery 5">
+                    </div>
+                </div>
+
+                <!-- Bottom Text -->
+                <div
+                    class="absolute bottom-48 md:bottom-56 lg:bottom-64 inset-x-0 z-40 text-center pl-12 md:pl-[6.5rem] pointer-events-none">
+                    <h2
+                        class="text-white text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] font-heading leading-[0.95] tracking-wide uppercase drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)]">
+                        HYDRATION<br>ELEVATIED
+                    </h2>
+                </div>
+
+                <!-- Bottom Banner (Vector.png) -->
+                <div
+                    class="absolute bottom-10 md:bottom-16 inset-x-0 z-40 flex justify-center pl-12 md:pl-[6.5rem] pointer-events-none">
+                    <img src="./Vector.png" alt="Features"
+                        class="w-[92%] max-w-[1050px] object-contain drop-shadow-2xl">
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Contact Section -->
+        <section class="w-full h-screen m-0 p-0 relative flex overflow-hidden shrink-0">
+            <!-- Background Image -->
+            <img src="./section6bg.png" alt="Section 8 Background"
+                class="absolute inset-0 w-full h-full object-cover -z-20">
+
+            <!-- Sidebar / Number (Section 8) -->
+            <aside
+                class="absolute left-0 top-0 bottom-0 w-12 md:w-[6.5rem] border-r border-white/20 flex flex-col pt-24 md:pt-[8.5rem] items-center flex-shrink-0 bg-transparent z-40 pointer-events-none">
+                <span
+                    class="text-4xl md:text-[3.5rem] font-heading text-gray-400 leading-none pointer-events-auto">08</span>
+            </aside>
+
+            <!-- Main Content Container for Section 7 -->
+            <div class="flex-1 w-full h-full pl-12 md:pl-[6.5rem] relative z-10 overflow-hidden">
+                <div
+                    class="w-full max-w-[1400px] mx-auto h-full flex flex-col md:flex-row items-center justify-between px-6 md:px-16 pt-20 pb-10">
+
+                    <!-- Left Column -->
+                    <div class="w-full md:w-[35%] flex flex-col justify-center text-[#15321f]">
+                        <h4 class="font-bold tracking-widest text-xs md:text-sm mb-2">GET IN TOUCH</h4>
+                        <h2 class="text-4xl md:text-5xl lg:text-[4rem] font-heading leading-[1.1] mb-10">WE'D LOVE
+                            TO<br>HEAR FROM YOU</h2>
+
+                        <div class="space-y-6 mb-10 text-sm md:text-base">
+                            <!-- phone -->
+                            <div class="flex items-center space-x-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-[#15321f] flex items-center justify-center text-white shrink-0">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                                    </svg>
+                                </div>
+                                <span class="font-medium">+91 98765 43210</span>
+                            </div>
+                            <!-- email -->
+                            <div class="flex items-center space-x-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-[#15321f] flex items-center justify-center text-white shrink-0">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                                    </svg>
+                                </div>
+                                <span class="font-medium">hello@vernora.com</span>
+                            </div>
+                            <!-- address -->
+                            <div class="flex items-center space-x-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-[#15321f] flex items-center justify-center text-white shrink-0">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                                    </svg>
+                                </div>
+                                <span class="font-medium leading-relaxed">123, Green Water Road,<br>Coimbatore, Tamil
+                                    Nadu - 641001</span>
+                            </div>
+                        </div>
+
+                        <!-- social icons -->
+                        <div class="flex space-x-4">
+                            <div
+                                class="w-9 h-9 rounded-full bg-[#15321f] flex items-center justify-center text-white cursor-pointer hover:bg-opacity-80 transition-opacity">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                                </svg>
+                            </div>
+                            <div
+                                class="w-9 h-9 rounded-full bg-[#15321f] flex items-center justify-center text-white cursor-pointer hover:bg-opacity-80 transition-opacity">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                                </svg>
+                            </div>
+                            <div
+                                class="w-9 h-9 rounded-full bg-[#15321f] flex items-center justify-center text-white cursor-pointer hover:bg-opacity-80 transition-opacity">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+                                </svg>
+                            </div>
+                            <div
+                                class="w-9 h-9 rounded-full bg-[#15321f] flex items-center justify-center text-white cursor-pointer hover:bg-opacity-80 transition-opacity">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <path
+                                        d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column (Form) -->
+                    <div class="w-full md:w-[45%] lg:w-[40%] flex flex-col justify-center mt-12 md:mt-0">
+                        <form class="space-y-4 md:space-y-6">
+                            <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+                                <input type="text" placeholder="Your Name"
+                                    class="w-full md:w-1/2 p-4 rounded-md border border-gray-300 bg-transparent focus:bg-white/50 focus:outline-none focus:border-[#15321f] placeholder-gray-500 transition-colors">
+                                <input type="email" placeholder="Email Address"
+                                    class="w-full md:w-1/2 p-4 rounded-md border border-gray-300 bg-transparent focus:bg-white/50 focus:outline-none focus:border-[#15321f] placeholder-gray-500 transition-colors">
+                            </div>
+                            <input type="tel" placeholder="Phone Number"
+                                class="w-full p-4 rounded-md border border-gray-300 bg-transparent focus:bg-white/50 focus:outline-none focus:border-[#15321f] placeholder-gray-500 transition-colors">
+                            <textarea placeholder="Your Message" rows="5"
+                                class="w-full p-4 rounded-md border border-gray-300 bg-transparent focus:bg-white/50 focus:outline-none focus:border-[#15321f] placeholder-gray-500 resize-none transition-colors"></textarea>
+                            <button type="button"
+                                class="w-full py-5 rounded-md bg-[#15321f] text-white font-semibold tracking-wide hover:bg-[#1f482d] transition-colors">SEND
+                                MESSAGE</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-[#15321f] text-[#d3ded0] pt-10 pb-6 w-full shrink-0 relative z-20">
+            <div class="max-w-[1400px] mx-auto px-6 md:px-16 w-full">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 pb-8 border-b border-white/10">
+                    <!-- Col 1: Logo -->
+                    <div
+                        class="flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-white/10 pb-8 md:pb-0 md:pr-4">
+                        <div class="flex flex-col items-center justify-center">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                class="mb-2 text-white">
+                                <path d="M12 2.5C12 2.5 7 6 7 11c0 3.5 2 6.5 5 8c3-1.5 5-4.5 5-8 0-5-5-8.5-5-8.5z" />
+                                <path d="M12 19v3" />
+                            </svg>
+                            <h1
+                                class="text-4xl md:text-5xl font-heading text-white leading-none tracking-widest mt-2 drop-shadow-md">
+                                VERNORA</h1>
+                            <span class="text-[0.65rem] tracking-[0.3em] uppercase font-semibold mt-2 text-white">PURE
+                                BY NATURE</span>
+                        </div>
+                    </div>
+
+                    <!-- Col 2: Text -->
+                    <div
+                        class="flex flex-col border-b md:border-b-0 md:border-r border-white/10 pb-8 md:pb-0 px-4 md:px-8 justify-center">
+                        <h3 class="text-white font-semibold mb-4 tracking-wide">VERNORA BOTTLES</h3>
+                        <p class="text-sm leading-[1.8] text-[#a8bda7]">Crafted to keep you hydrated<br>with purity,
+                            style, and<br>performance.</p>
+                    </div>
+
+                    <!-- Col 3: Links -->
+                    <div
+                        class="flex flex-col border-b md:border-b-0 md:border-r border-white/10 pb-8 md:pb-0 px-4 md:px-8 justify-center">
+                        <h3 class="text-white font-semibold mb-4 tracking-wide">QUICK LINKS</h3>
+                        <div class="flex flex-col space-y-2 text-sm text-[#a8bda7]">
+                            <a href="#" class="hover:text-white transition-colors">Home</a>
+                            <a href="#" class="hover:text-white transition-colors">Our Story</a>
+                            <a href="#" class="hover:text-white transition-colors">Features</a>
+                            <a href="#" class="hover:text-white transition-colors">Products</a>
+                            <a href="#" class="hover:text-white transition-colors">Contact</a>
+                        </div>
+                    </div>
+
+                    <!-- Col 4: Social -->
+                    <div class="flex flex-col px-4 md:px-8 justify-center">
+                        <h3 class="text-white font-semibold mb-4 tracking-wide">FOLLOW US</h3>
+                        <div class="flex space-x-3">
+                            <a href="#"
+                                class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-[#15321f] transition-all">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                                </svg>
+                            </a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-[#15321f] transition-all">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                                </svg>
+                            </a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-[#15321f] transition-all">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <path
+                                        d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                                </svg>
+                            </a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-[#15321f] transition-all">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C0 8.084 0 12 0 12s0 3.916.501 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.377.55 9.377.55s7.505 0 9.377-.55a3.016 3.016 0 0 0 2.122-2.136C24 15.916 24 12 24 12s0-3.916-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom -->
+                <div class="pt-6 text-center text-sm text-[#a8bda7]">
+                    &copy; 2025 VERNORA. All Rights Reserved.
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

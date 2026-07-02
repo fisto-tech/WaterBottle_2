@@ -1,0 +1,220 @@
+/* Water Drops */
+.water-drop {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 46% 54% 48% 52% / 54% 43% 57% 46%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: radial-gradient(circle closest-corner at 60% 30%,
+      rgba(255, 255, 255, 0.3) 10%,
+      rgba(180, 180, 180, 0.2) 100%);
+  box-shadow:
+    inset 10px 10px 20px rgba(0, 0, 0, 0.15),
+    inset -10px -10px 25px rgba(255, 255, 255, 0.9),
+    15px 25px 15px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(4px);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.water-drop::after {
+  content: '';
+  position: absolute;
+  top: 18%;
+  left: 22%;
+  width: 18px;
+  height: 14px;
+  background: #fff;
+  border-radius: 50%;
+  filter: blur(1px);
+  transform: rotate(-30deg);
+}
+
+.water-drop::before {
+  content: '';
+  position: absolute;
+  top: 35%;
+  left: 15%;
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  filter: blur(0.5px);
+}
+
+.water-drop-1 {
+  top: 0%;
+  left: 12%;
+  transform: scale(1.2);
+  animation: floatDrop1 6s ease-in-out infinite;
+}
+
+.water-drop-2 {
+  bottom: 25%;
+  left: 25%;
+  transform: scale(0.8);
+  animation: floatDrop2 8s ease-in-out infinite reverse;
+}
+
+.water-drop-3 {
+  top: -3%;
+  right: 15%;
+  transform: scale(1.1);
+  animation: floatDrop3 7s ease-in-out infinite;
+}
+
+@keyframes floatDrop1 {
+  0%, 100% {
+    transform: scale(1.2) translateY(0);
+  }
+  50% {
+    transform: scale(1.2) translateY(-20px);
+  }
+}
+
+@keyframes floatDrop2 {
+  0%, 100% {
+    transform: scale(0.8) translateY(0);
+  }
+  50% {
+    transform: scale(0.8) translateY(-15px);
+  }
+}
+
+@keyframes floatDrop3 {
+  0%, 100% {
+    transform: scale(1.1) translateY(0);
+  }
+  50% {
+    transform: scale(1.1) translateY(-25px);
+  }
+}
+
+.water-drop-4 {
+  top: 45%;
+  left: 20%;
+  transform: scale(0.4);
+  animation: floatDrop4 5s ease-in-out infinite 0.5s;
+}
+
+.water-drop-5 {
+  bottom: 15%;
+  right: 25%;
+  transform: scale(0.6);
+  animation: floatDrop5 7s ease-in-out infinite 1s reverse;
+}
+
+.water-drop-6 {
+  top: 5%;
+  right: 40%;
+  transform: scale(0.3);
+  animation: floatDrop6 6s ease-in-out infinite 1.5s;
+}
+
+@keyframes floatDrop4 {
+  0%, 100% {
+    transform: scale(0.4) translateY(0);
+  }
+  50% {
+    transform: scale(0.4) translateY(-10px);
+  }
+}
+
+@keyframes floatDrop5 {
+  0%, 100% {
+    transform: scale(0.6) translateY(0);
+  }
+  50% {
+    transform: scale(0.6) translateY(-15px);
+  }
+}
+
+@keyframes floatDrop6 {
+  0%, 100% {
+    transform: scale(0.3) translateY(0);
+  }
+  50% {
+    transform: scale(0.3) translateY(-8px);
+  }
+}
+
+.water-drop-7 {
+  bottom: 35%;
+  left: 8%;
+  transform: scale(0.5);
+  animation: floatDrop7 6s ease-in-out infinite 0.3s;
+}
+
+.water-drop-8 {
+  top: 60%;
+  right: 15%;
+  transform: scale(0.7);
+  animation: floatDrop8 8s ease-in-out infinite 0.7s reverse;
+}
+
+.water-drop-9 {
+  top: 15%;
+  right: 30%;
+  transform: scale(0.35);
+  animation: floatDrop9 7s ease-in-out infinite 1.2s;
+}
+
+@keyframes floatDrop7 {
+  0%, 100% {
+    transform: scale(0.5) translateY(0);
+  }
+  50% {
+    transform: scale(0.5) translateY(-12px);
+  }
+}
+
+@keyframes floatDrop8 {
+  0%, 100% {
+    transform: scale(0.7) translateY(0);
+  }
+  50% {
+    transform: scale(0.7) translateY(-16px);
+  }
+}
+
+@keyframes floatDrop9 {
+  0%, 100% {
+    transform: scale(0.35) translateY(0);
+  }
+  50% {
+    transform: scale(0.35) translateY(-10px);
+  }
+}
+
+.water-drop-10 {
+  top: 30%;
+  left: 40%;
+  transform: scale(0.9);
+  animation: floatDrop10 7.5s ease-in-out infinite 0.4s;
+}
+@keyframes floatDrop10 {
+  0%, 100% { transform: scale(0.9) translateY(0); }
+  50% { transform: scale(0.9) translateY(-18px); }
+}
+
+.water-drop-11 {
+  bottom: 20%;
+  right: 10%;
+  transform: scale(0.45);
+  animation: floatDrop11 6.5s ease-in-out infinite 0.8s reverse;
+}
+@keyframes floatDrop11 {
+  0%, 100% { transform: scale(0.45) translateY(0); }
+  50% { transform: scale(0.45) translateY(-12px); }
+}
+
+.water-drop-12 {
+  top: 40%;
+  right: 25%;
+  transform: scale(0.85);
+  animation: floatDrop12 8.5s ease-in-out infinite 1.1s;
+}
+@keyframes floatDrop12 {
+  0%, 100% { transform: scale(0.85) translateY(0); }
+  50% { transform: scale(0.85) translateY(-22px); }
+}
